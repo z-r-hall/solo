@@ -20,9 +20,10 @@ todoController.getToDo = async (req, res, next) => {
 
 todoController.postToDo = async (req, res, next) => {
   try {
-    console.log(req.body)
-    const item = req.body;
-    const newToDo = await List.create({item});
+    console.log(req.params)
+    const item = req.params.item;
+    const newToDo = new List({item: item});
+    await newToDo.save();
     res.locals.toDos = await List.find()
     return next();
   } catch (err) {
@@ -30,7 +31,7 @@ todoController.postToDo = async (req, res, next) => {
       return next({
         log: 'Express error handler caught a postToDo middleware error',
         status: 400,
-        message: { err: 'An error occurred' },
+        message: { err: 'An error occurred in POST TO DO' },
       });
     }
   }
@@ -56,8 +57,9 @@ todoController.updateToDo = async (req, res, next) => {
 todoController.deleteToDo = async (req, res, next) => {
   try {
     const item = req.params.item;
-    console.log(item)
-    await List.remove({item: item});
+    await List.deleteOne({item: item});
+    const updated = await List.find();
+    res.locals.toDos = updated;
     return next();
   } catch (err) {
     if (err) {

@@ -21,7 +21,14 @@ function Table() {
       e.target.nextSibling.style.color = 'red';
       e.target.nextSibling.style.textDecoration = 'line-through';
     } else {
-      //delete the button and the list item
+      const item = e.target.nextSibling.innerText;
+      await fetch(`http://localhost:3000/api/delete/${item}`, {
+        method: 'DELETE',
+      })
+      .then(data => data.json())
+      .then(
+        data => {
+          setData([...data])
       e.target.style.textDecoration = 'none';
       e.target.style.color = 'green';
       e.target.nextSibling.style.color = 'green';
@@ -29,36 +36,34 @@ function Table() {
       const random = Math.floor(Math.random() * quotes.length);
       let quote = quotes[random];
       e.target.nextSibling.style.fontSize = 'x-large';
-      const item = e.target.nextSibling.innerText;
       e.target.nextSibling.innerText = quote;
       const id = Number(e.target.id);
       setTimeout(() => {
         document.getElementById(id).parentNode.innerText = '';
       }, 1000)
-      await fetch(`http://localhost:3000/api/delete/${item}`, {
-        method: 'DELETE',
       })
+      
     }
   }
 
   async function add() {
     const item = document.querySelector('#add').value;
     document.querySelector('#add').value = '';
-    await fetch('http://localhost:3000/api/submit', {
+    await fetch(`http://localhost:3000/api/submit/${item}`, {
       method: 'POST',
-      mode: 'no-cors',
+      body: item,
       headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(item),
-    })
-    .then(data => data.json())
+        'Content-type': 'plain/text'
+      }
+    }).then((data) => data.json())
     .then(data => setData([...data]))
     .catch(err => console.log(err))
   }
 
   const [data, setData] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
+  const [count, setCount] = useState(0);
+
 
   useEffect(() =>
     fetch('http://localhost:3000/api').then((info) => info.json())
