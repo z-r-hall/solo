@@ -1,0 +1,30 @@
+.App {
+  text-align: center;
+  color: blue;
+}
+
+.Table {
+  display: flex;
+  justify-content: center;
+  color: darkblue;
+  table {
+    tr {
+      th {
+        border: 2px solid blue;
+        margin: 0;
+        padding: 3px;
+      }
+      td {
+        border: 2px solid blue;
+        margin: 0;
+        padding: 3px;
+      }
+    }
+  }
+}
+
+button {
+  background-color: white;
+  border-color: blue;
+  height: 2rem;
+}
