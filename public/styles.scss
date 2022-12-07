@@ -1,30 +1,96 @@
+$primary: #493548;
+$secondary: #4b4e6d;
+$tertiary: #6a8d92;
+
 .App {
   text-align: center;
-  color: blue;
+  color: $secondary;
+}
+
+body {
+  background-image: linear-gradient(90deg, #80b192, #a1e887);
 }
 
 .Table {
   display: flex;
   justify-content: center;
-  color: darkblue;
+  color: $primary;
   table {
     tr {
       th {
-        border: 2px solid blue;
-        margin: 0;
+        border-bottom: 2px solid $secondary;
+        background-color: $tertiary;
         padding: 3px;
+        font-size: x-large;
+        width: 10rem;
+        border-radius: 5px;
       }
       td {
-        border: 2px solid blue;
+        border: 2px solid $secondary;
+        color: a1e887;
         margin: 0;
         padding: 3px;
+        font-size: large;
+        width: auto;
+        border-radius: 5px;
+        background-color: $tertiary;
       }
     }
   }
 }
 
+label {
+  text-decoration: underline;
+}
+
 button {
-  background-color: white;
-  border-color: blue;
+  background-color: $tertiary;
+  border-color: $secondary;
   height: 2rem;
+  width: 10rem;
+  border-radius: 5px;
+}
+
+#addUpdate {
+  margin-bottom: 20px;
+}
+
+#update {
+  margin-left: 10px;
+  background-color: lighten($tertiary, 25%);
+  border-radius: 5px;
+}
+
+#add {
+  margin-left: 10px;
+  margin-right: 10px;
+  background-color: lighten($tertiary, 25%);
+  border-radius: 5px;
+}
+
+#addButton {
+  margin-right: 10px;
+  width: auto;
+  height: auto;
+}
+
+#updateButton {
+  margin-left: 10px;
+  width: auto;
+  height: auto;
+}
+
+#addUpdate {
+  margin-top: 50px;
+  margin-bottom: 50px;
+  color: darkslategray;
+}
+
+#addDiv {
+  margin-bottom: 10px;
+}
+
+h1 {
+  margin-top: 50px;
+  text-decoration: underline;
 }

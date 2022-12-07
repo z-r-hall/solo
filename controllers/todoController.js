@@ -20,10 +20,10 @@ todoController.getToDo = async (req, res, next) => {
 
 todoController.postToDo = async (req, res, next) => {
   try {
-    let num = req.body.num;
-    num = Number(num);
-    const item = req.body.item;
-    const newToDo = await List.create({num, item});
+    console.log(req.body)
+    const item = req.body;
+    const newToDo = await List.create({item});
+    res.locals.toDos = await List.find()
     return next();
   } catch (err) {
     if (err) {
@@ -55,8 +55,9 @@ todoController.updateToDo = async (req, res, next) => {
 
 todoController.deleteToDo = async (req, res, next) => {
   try {
-    const item = req.body.item;
-    await List.remove({item});
+    const item = req.params.item;
+    console.log(item)
+    await List.remove({item: item});
     return next();
   } catch (err) {
     if (err) {
