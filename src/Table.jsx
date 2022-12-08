@@ -3,10 +3,10 @@ const { useEffect } = React;
 const { useState } = React;
 
 const quotes = [
-  'You bad!',
+  'You badass!',
   'Hell yeah!',
   'Get it now!',
-  'You monster!',
+  'You\'re a monster!',
   'Yee-haw!',
   'Woo hoo!',
   'Giddy-up!',
@@ -34,7 +34,7 @@ function Table() {
           e.target.nextSibling.style.textDecoration = 'none';
           const random = Math.floor(Math.random() * quotes.length);
           let quote = quotes[random];
-          const reward = document.querySelector('.reward').innerHTML = quote;
+          const reward = (document.querySelector('.reward').innerHTML = quote);
           // e.target.nextSibling.style.fontSize = 'x-large';
           // e.target.nextSibling.innerText = quote;
           // const id = Number(e.target.id);
@@ -43,6 +43,24 @@ function Table() {
           }, 1500);
         });
     }
+  }
+
+  async function update() {
+    const num = document.querySelector('#num').value;
+    const newItem = document.querySelector('#update').value;
+    document.querySelector('#num').value = '';
+    document.querySelector('#update').value = '';
+    const oldItem = document.getElementById(num).nextSibling.innerText;
+    await fetch(`http://localhost:3000/api/update/${oldItem}/${newItem}`, {
+      method: 'PUT',
+      body: newItem,
+      headers: {
+        'Content-type': 'plain/text',
+      },
+    })
+      .then((data) => data.json())
+      .then((data) => setData([...data]))
+      .catch((err) => console.log(err));
   }
 
   async function add() {
@@ -86,30 +104,35 @@ function Table() {
           </button>
         </div>
         <div>
-          <label for='update'>Update an item:</label>
+          <label for='update num'>Enter # to update & new item name:</label>
+          <input id='num'></input>
           <input id='update'></input>
-          <button id='updateButton'>Update item</button>
+          <button id='updateButton' onClick={update}>
+            Update item
+          </button>
         </div>
       </div>
       <div className='Table'>
         <table>
           <tr>
-            <th id="num">#</th>
+            <th id='numHead'>#</th>
             <th>Your list:</th>
           </tr>
           {!isLoaded && <p>Loading...</p>}
           {isLoaded &&
             data.map((val, index) => {
               return (
-                <tr key={index}>
-                  <button id={index} onClick={(e) => handleClick(e)}>{index + 1}</button>
+                <tr key={index + 1}>
+                  <button id={index + 1} onClick={(e) => handleClick(e)}>
+                    {index + 1}
+                  </button>
                   <td>{val.item}</td>
                 </tr>
               );
             })}
         </table>
       </div>
-      <h2 class="reward"></h2>
+      <h2 class='reward'></h2>
     </div>
   );
 }

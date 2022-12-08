@@ -16,9 +16,17 @@ router.post('/submit/:item', todoController.postToDo, (req, res) => {
   res.status(200).json(res.locals.toDos);
 });
 
-router.put('/update/:itemName', todoController.updateToDo, (req, res) => {
-  res.status(200).json();
-});
+router.put(
+  '/update/:oldItem/:newItem',
+  todoController.updateToDo,
+  (req, res) => {
+    res.set({
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*',
+    });
+    res.status(200).json(res.locals.toDos);
+  }
+);
 
 router.delete('/delete/:item', todoController.deleteToDo, (req, res) => {
   res.status(200).json(res.locals.toDos);

@@ -71,10 +71,6 @@ button {
   border-radius: 5px;
 }
 
-#num {
-  width: auto;
-}
-
 .reward {
   font-size: xx-large;
 }
@@ -111,4 +107,15 @@ button {
 h1 {
   margin-top: 50px;
   text-decoration: underline;
+}
+
+#num {
+  width: 2rem;
+  margin-left: 10px;
+  background-color: lighten($tertiary, 25%);
+  border-radius: 5px;
+}
+
+#update {
+  width: 10rem;
 }
