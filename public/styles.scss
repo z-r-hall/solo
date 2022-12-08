@@ -8,7 +8,7 @@ $tertiary: #6a8d92;
 }
 
 body {
-  background-image: linear-gradient(90deg, #80b192, #a1e887);
+  background-image: linear-gradient(90deg, #80b192, #a1e887, yellow);
 }
 
 .Table {
@@ -18,16 +18,19 @@ body {
   table {
     tr {
       th {
+        text-align: center;
+        text-decoration: underline;
         border-bottom: 2px solid $secondary;
         background-color: $tertiary;
         padding: 3px;
         font-size: x-large;
-        width: 10rem;
+        width: auto;
         border-radius: 5px;
       }
       td {
         border: 2px solid $secondary;
-        color: a1e887;
+        color: $primary;
+        font-weight: 600;
         margin: 0;
         padding: 3px;
         font-size: large;
@@ -39,6 +42,11 @@ body {
   }
 }
 
+.del {
+  width: auto;
+  // height: auto;
+}
+
 label {
   text-decoration: underline;
 }
@@ -47,8 +55,10 @@ button {
   background-color: $tertiary;
   border-color: $secondary;
   height: 2rem;
-  width: 10rem;
+  width: auto;
   border-radius: 5px;
+  font-size: medium;
+  color: $secondary;
 }
 
 #addUpdate {
@@ -59,6 +69,14 @@ button {
   margin-left: 10px;
   background-color: lighten($tertiary, 25%);
   border-radius: 5px;
+}
+
+#num {
+  width: auto;
+}
+
+.reward {
+  font-size: xx-large;
 }
 
 #add {

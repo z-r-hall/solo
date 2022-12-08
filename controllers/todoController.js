@@ -20,7 +20,6 @@ todoController.getToDo = async (req, res, next) => {
 
 todoController.postToDo = async (req, res, next) => {
   try {
-    console.log(req.params)
     const item = req.params.item;
     const newToDo = new List({item: item});
     await newToDo.save();
