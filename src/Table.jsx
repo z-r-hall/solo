@@ -63,6 +63,13 @@ function Table() {
       .catch((err) => console.log(err));
   }
 
+  function undo(e) {
+    e.target.style.textDecoration = 'none';
+          e.target.style.color = '#493548';
+          e.target.parentNode.firstChild.style.color = '#493548';
+          e.target.parentNode.firstChild.style.textDecoration = 'none';
+  }
+
   async function add() {
     const item = document.querySelector('#add').value;
     document.querySelector('#add').value = '';
@@ -126,7 +133,7 @@ function Table() {
                   <button id={index + 1} onClick={(e) => handleClick(e)}>
                     {index + 1}
                   </button>
-                  <td>{val.item}</td>
+                  <td onClick={(e) => undo(e)} >{val.item}</td>
                 </tr>
               );
             })}
