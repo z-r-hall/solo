@@ -2,27 +2,22 @@ $primary: #493548;
 $secondary: #4b4e6d;
 $tertiary: #6a8d92;
 
-.App {
+body {
   text-align: center;
   color: $secondary;
-}
-
-body {
   background-image: linear-gradient(90deg, #80b192, #a1e887, yellow);
 }
 
-.Table {
+.table {
   display: flex;
   justify-content: center;
-  color: $primary;
+  margin-left: 0px;
   table {
     tr {
       th {
-        text-align: center;
         text-decoration: underline;
         border-bottom: 2px solid $secondary;
         background-color: $tertiary;
-        padding: 3px;
         font-size: x-large;
         width: auto;
         border-radius: 5px;
@@ -31,8 +26,6 @@ body {
         border: 2px solid $secondary;
         color: $primary;
         font-weight: 600;
-        margin: 0;
-        padding: 3px;
         font-size: large;
         width: auto;
         border-radius: 5px;
@@ -40,11 +33,6 @@ body {
       }
     }
   }
-}
-
-.del {
-  width: auto;
-  // height: auto;
 }
 
 label {
@@ -61,14 +49,14 @@ button {
   color: $secondary;
 }
 
-#addUpdate {
-  margin-bottom: 20px;
-}
-
 #update {
   margin-left: 10px;
   background-color: lighten($tertiary, 25%);
   border-radius: 5px;
+}
+
+.update {
+  margin-left: 10px;
 }
 
 .reward {
@@ -83,7 +71,6 @@ button {
 }
 
 #addButton {
-  margin-right: 10px;
   width: auto;
   height: auto;
 }
@@ -95,7 +82,7 @@ button {
 }
 
 #addUpdate {
-  margin-top: 50px;
+  margin-top: 0px;
   margin-bottom: 50px;
   color: darkslategray;
 }
@@ -118,4 +105,28 @@ h1 {
 
 #update {
   width: 10rem;
+}
+
+.flexBoy {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  align-items: center;
+}
+
+img {
+  margin: 10px;
+  height: 350px;
+  width: 350px;
+  padding: 10px;
+  display: block;
+  background-color: $secondary;
+}
+
+#book {
+  height: 500px;
+  margin-left: 75px;
+}
+
+.twopics {
+margin-left: 200px;
 }

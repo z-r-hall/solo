@@ -19,8 +19,7 @@ todoController.getToDo = async (req, res, next) => {
 todoController.postToDo = async (req, res, next) => {
   try {
     const item = req.params.item;
-    const newToDo = new List({item: item});
-    await newToDo.save();
+    await List.create({item});
     res.locals.toDos = await List.find()
     return next();
   } catch (err) {
@@ -36,8 +35,7 @@ todoController.updateToDo = async (req, res, next) => {
   try {
     const oldItem = req.params.oldItem;
     const newItem = req.params.newItem;
-    console.log(oldItem, newItem)
-    const newToDo = await List.findOneAndUpdate({item: oldItem}, {item: newItem});
+    await List.findOneAndUpdate({item: oldItem}, {item: newItem});
     res.locals.toDos = await List.find();
     return next();
   } catch (err) {
@@ -52,9 +50,8 @@ todoController.updateToDo = async (req, res, next) => {
 todoController.deleteToDo = async (req, res, next) => {
   try {
     const item = req.params.item;
-    await List.deleteOne({item: item});
-    const updated = await List.find();
-    res.locals.toDos = updated;
+    await List.deleteOne({item});
+    res.locals.toDos = await List.find();
     return next();
   } catch (err) {
       return next({
